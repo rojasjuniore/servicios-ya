@@ -1,3 +1,51 @@
-<p>
-  service-request works!
-</p>
+<div *ngIf="!image" class="text-center">
+  <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+</div>
+<img *ngIf="image" class="card-img-top" [src]="_sfs.results.imagen" alt="Card image cap">
+<hr>
+<div class="container">
+  <form (ngSubmit)="save(forma)" #forma="ngForm" novalidate="">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Nombre Completo</label>
+      <input type="text" [(ngModel)]="user.name" name="name" required class="form-control" id="exampleFormControlInput1" placeholder="Pedro Perez">
+      <div *ngIf="!forma.controls.name.valid && forma.controls.name.dirty " class="alert alert-danger m-1" role="alert">
+        Este campo no puede estar vacío! :(
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Cedula</label>
+      <input type="number" [(ngModel)]="user.identification_card" name="identification_card" required class="form-control" id="exampleFormControlInput1"
+        placeholder="20123456">
+      <div *ngIf="!forma.controls.identification_card.valid && forma.controls.identification_card.dirty " class="alert alert-danger m-1"
+        role="alert">
+        Este campo no puede estar vacío! :(
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Numero Telefonico</label>
+      <input type="number" [(ngModel)]="user.phone_number" name="phone_number" required class="form-control" id="exampleFormControlInput1"
+        placeholder="323-1231232">
+      <div *ngIf="!forma.controls.phone_number.valid && forma.controls.phone_number.dirty " class="alert alert-danger m-1" role="alert">
+        Este campo no puede estar vacío! :(
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Email address</label>
+      <input type="email" [(ngModel)]="user.email" name="email" required class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      <div *ngIf="!forma.controls.email.valid && forma.controls.email.dirty " class="alert alert-danger m-1" role="alert">
+        Este campo no puede estar vacío! :(
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Direccion</label>
+      <textarea [(ngModel)]="user.address" name="address" required class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <div *ngIf="!forma.controls.address.valid && forma.controls.address.dirty " class="alert alert-danger m-1" role="alert">
+        Este campo no puede estar vacío! :(
+      </div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="!forma.valid" type="submit" class="btn btn-success btn-block">Solicitar</button>
+    </div>
+  </form>
+</div>
